@@ -21,6 +21,25 @@ BR2_PACKAGE_ATBM60XX_MODEL_603X=y
 BR2_PACKAGE_ATBM60XX_INTERFACE_USB=y
 ~~~
 
+- add this file wlan0
+
+~~~
+auto wlan0
+iface wlan0 inet dhcp
+    pre-up devmem 0x100C0080 32 0x530
+    pre-up echo 7 > /sys/class/gpio/export
+    pre-up echo out > /sys/class/gpio/gpio7/direction
+    pre-up echo 0 > /sys/class/gpio/gpio7/value
+    pre-up modprobe mt7601u
+    pre-up modprobe atbm603x_wifi_usb
+    pre-up wpa_passphrase write_here_your_SSID write_here_your_Wifi_Password >/tmp/wpa_supplicant.conf
+    pre-up sed -i '2i \\tscan_ssid=1' /tmp/wpa_supplicant.conf
+    pre-up sleep 3
+    pre-up wpa_supplicant -B -D nl80211 -i wlan0 -c/tmp/wpa_supplicant.conf
+    post-down killall -q wpa_supplicant
+    post-down echo 1 > /sys/class/gpio/gpio7/value
+    post-down echo 7 > /sys/class/gpio/unexport
+~~~
 
 ![01](https://github.com/user-attachments/assets/023cc734-7e30-40a9-97f6-a4408ba3ab03)
 ![02](https://github.com/user-attachments/assets/26a63724-caa8-4dd7-91f2-a11ff5306fbe)
