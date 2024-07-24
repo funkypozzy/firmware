@@ -5,16 +5,16 @@
 This fork is specific for IVG G6S (GK7205V300 + Sony IMX335) with the wifi/SD board IPC-38x38-WIFI-IF V1.02 - ATBM603x
 
 In particular this fork will:
-- modify the file \etc\wireless\usb to include the required for the wifi board based on the ATBM603x wifi chip. In particular the following lines have been added:
+- modify the file "general/overlay/etc/wireless/usb" to include the required instruction to power on the wifi board based on the ATBM603x wifi chip. In particular the following lines have been added:
 
-# GK7205V300 XM IVG-G6S
+~~~ # GK7205V300 XM IVG-G6S
 if [ "$1" = "atbm603x-gk7205v300-xm-g6s" ]; then
   devmem 0x100C0080 32 0x530
   set_gpio 7 0
 	modprobe atbm603x_wifi_usb
 	exit 0
 fi
-
+~~~ 
 - modify the file 
 
 
