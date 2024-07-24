@@ -32,7 +32,7 @@ iface wlan0 inet dhcp
     pre-up echo 0 > /sys/class/gpio/gpio7/value
     pre-up modprobe mt7601u
     pre-up modprobe atbm603x_wifi_usb
-    pre-up wpa_passphrase write_here_your_SSID write_here_your_Wifi_Password >/tmp/wpa_supplicant.conf
+    pre-up wpa_passphrase SSID Wifi_Password >/tmp/wpa_supplicant.conf
     pre-up sed -i '2i \\tscan_ssid=1' /tmp/wpa_supplicant.conf
     pre-up sleep 3
     pre-up wpa_supplicant -B -D nl80211 -i wlan0 -c/tmp/wpa_supplicant.conf
