@@ -7,3 +7,7 @@ This fork is specific for IVG G6S (GK7205V300 + Sony IMX335) with the wifi/SD bo
 In particular this fork will:
 - modify the file \etc\wireless\usb to include the required for the wifi board based on the ATBM603x wifi chip. In particular the following lines have been added
 - modify the file 
+
+
+![01](https://github.com/user-attachments/assets/023cc734-7e30-40a9-97f6-a4408ba3ab03)
+![02](https://github.com/user-attachments/assets/26a63724-caa8-4dd7-91f2-a11ff5306fbe)
