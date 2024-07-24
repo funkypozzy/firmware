@@ -5,6 +5,14 @@ set_gpio() {
 	sleep 1
 }
 
+# GK7205V300 XM IVG-G6S
+if [ "$1" = "atbm603x-gk7205v300-xm-g6s" ]; then
+  devmem 0x100C0080 32 0x530
+  set_gpio 7 0
+	modprobe atbm603x_wifi_usb
+	exit 0
+fi
+
 # Generic MT7601U
 if [ "$1" = "mt7601u-generic" ]; then
 	modprobe mt7601u
