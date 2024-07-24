@@ -41,5 +41,8 @@ iface wlan0 inet dhcp
     post-down echo 7 > /sys/class/gpio/unexport
 ~~~
 
+- modify the ethernet ip address in file *general/overlay/etc/init.d/S40network* from 192.168.2.1 (which is outside my subnet ip range) to 192.168.1.20 which is inside my subnet range and not in conflict with other devices connected to the my LAN.
+
+
 ![01](https://github.com/user-attachments/assets/023cc734-7e30-40a9-97f6-a4408ba3ab03)
 ![02](https://github.com/user-attachments/assets/26a63724-caa8-4dd7-91f2-a11ff5306fbe)
