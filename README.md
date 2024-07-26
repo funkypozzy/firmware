@@ -26,7 +26,7 @@ BR2_PACKAGE_ATBM60XX_MODEL_603X=y
 BR2_PACKAGE_ATBM60XX_INTERFACE_USB=y
 ~~~
 
-- modifies file [/overlay/etc/network/interfaces.d/wlan0](/overlay/etc/network/interfaces.d/wlan0) to (THIS IS A TEST - NOT FINALISED!):
+- modifies file [general/overlay/etc/network/interfaces.d/wlan0](general/overlay/etc/network/interfaces.d/wlan0) to (THIS IS A TEST - NOT FINALISED!):
 
 ~~~
 iface wlan0 inet dhcp
