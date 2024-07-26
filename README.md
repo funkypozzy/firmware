@@ -13,8 +13,8 @@ This branch is specific for IVG G6S (GK7205V300 + Sony IMX335) with the wifi/SD 
  - a wired connection to UART TX/RX pins and GND of the board
  - a computer (or a virtual machine) where to run UBUNTU 22.04 to build the firmware (I was not able to build the firmware with a Raspbian running on rpi4 or rpi5)
  - a computer where to run a TFTP server
- - a router where both the computer running the TFTP server and the ip camera can connect (to upload the new firmware connect the ip camera to the router with an ethernet cable since wifi is not yet activated). You may also connect the camera directly to the ethernet port of to the computer if you know what you are doing...
-
+ - a mean to allow the comunication between the computer running the TFTP server and the ip camera to upload the new firmware. The easiest way for me is to connect the computer and the ip camera to my home router. To upload the new firmware connect the ip camera to the router with an ethernet cable since wifi is not yet activated.
+   
 ## WHAT YOU NEED - SOFTWARE
 - a TFTP software as for example Tftpd64 (ensure firewall is not blocking the server)
 - UBUNTU 22.04 to build the firmware (I was not able to build the firmware with a Raspbian running on rpi4 or rpi5)
