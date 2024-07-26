@@ -7,6 +7,8 @@ This branch is specific for IVG G6S (GK7205V300 + Sony IMX335) with the wifi/SD 
 ![01](https://github.com/user-attachments/assets/023cc734-7e30-40a9-97f6-a4408ba3ab03)
 ![02](https://github.com/user-attachments/assets/26a63724-caa8-4dd7-91f2-a11ff5306fbe)
 
+## THESE ARE STILL EXPERIMENTAL SETTINGS FOR MY PERSONAL USE!
+
 In particular this branch:
 - modifies the file *general/overlay/etc/wireless/usb*  to include the required instruction to power on my wifi board based on the ATBM603x wifi chip (see images above). In particular the following lines have been added:
 ~~~ # GK7205V300 XM IVG-G6S
@@ -17,14 +19,14 @@ if [ "$1" = "atbm603x-gk7205v300-xm-g6s" ]; then
 	exit 0
 fi
 ~~~ 
-- modifies the file */br-ext-chip-goke/configs/gk7205v300_ultimate_defconfig* to add in the wifi section the following lines to add the necessary drivers for the specific wifi board:
+- modifies the wifi secion in the file */br-ext-chip-goke/configs/gk7205v300_ultimate_defconfig* to include drivers for generic ATBM603x wifi chip (it is necessary to re-build the firmware):
 ~~~ 
 BR2_PACKAGE_ATBM60XX=y
 BR2_PACKAGE_ATBM60XX_MODEL_603X=y
 BR2_PACKAGE_ATBM60XX_INTERFACE_USB=y
 ~~~
 
-- modifies file */overlay/etc/network/interfaces.d/wlan0* to:
+- modifies file */overlay/etc/network/interfaces.d/wlan0* to (not shure this is necessary.... under test):
 
 ~~~
 auto wlan0
