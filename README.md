@@ -46,7 +46,9 @@ iface wlan0 inet dhcp
     post-down echo 7 > /sys/class/gpio/unexport
 ~~~
 
-- modifies the ethernet ip address in file *general/overlay/etc/init.d/S40network* from 192.168.2.1 (which is outside my subnet ip range) to 192.168.1.20 which is inside my subnet range and not in conflict with other devices connected to my LAN.
+- modifies the ethernet ip address in file [/general/overlay/etc/init.d/S40network](/general/overlay/etc/init.d/S40network) from 192.168.2.1 (which is outside my subnet ip range) to 192.168.1.20 which is inside my subnet range and not in conflict with other devices connected to my LAN.
+
+- a fixed value is assigned to the variable *dev* (i.e. dev=atbm603x-gk7205v300-xm-g6s) in file [/general/overlay/etc/init.d/S40network](/general/overlay/etc/init.d/S40network) to avoid to assign a value to the U-boot variable.
 
 - includes two sensor profiles with Wide Dynamic range (WDR) enabled in the folder:
 *general/package/goke-osdrv-gk7205v200/files/sensor/config/5M_imx335.ini
