@@ -10,7 +10,7 @@ This branch is specific for IVG G6S (GK7205V300 + Sony IMX335) with the wifi/SD 
 ## THESE ARE STILL EXPERIMENTAL SETTINGS FOR MY PERSONAL USE!
 
 In particular this branch:
-- modifies the file *general/overlay/etc/wireless/usb*  to include the required instruction to power on my wifi board based on the ATBM603x wifi chip (see images above). In particular the following lines have been added:
+- modifies the file [general/overlay/etc/wireless/usb](general/overlay/etc/wireless/usb)  to include the required instruction to power on my wifi board based on the ATBM603x wifi chip (see images above). In particular the following lines have been added:
 ~~~ # GK7205V300 XM IVG-G6S
 if [ "$1" = "atbm603x-gk7205v300-xm-g6s" ]; then
   devmem 0x100C0080 32 0x530
@@ -19,14 +19,14 @@ if [ "$1" = "atbm603x-gk7205v300-xm-g6s" ]; then
 	exit 0
 fi
 ~~~ 
-- modifies the wifi secion in the file */br-ext-chip-goke/configs/gk7205v300_ultimate_defconfig* to include drivers for generic ATBM603x wifi chip (it is necessary to re-build the firmware):
+- modifies the wifi secion in the file [/br-ext-chip-goke/configs/gk7205v300_ultimate_defconfig](/br-ext-chip-goke/configs/gk7205v300_ultimate_defconfig) to include drivers for generic ATBM603x wifi chip (it is necessary to re-build the firmware):
 ~~~ 
 BR2_PACKAGE_ATBM60XX=y
 BR2_PACKAGE_ATBM60XX_MODEL_603X=y
 BR2_PACKAGE_ATBM60XX_INTERFACE_USB=y
 ~~~
 
-- modifies file */overlay/etc/network/interfaces.d/wlan0* to (THIS IS A TEST - NOT FINALISED!):
+- modifies file [/overlay/etc/network/interfaces.d/wlan0](/overlay/etc/network/interfaces.d/wlan0) to (THIS IS A TEST - NOT FINALISED!):
 
 ~~~
 iface wlan0 inet dhcp
