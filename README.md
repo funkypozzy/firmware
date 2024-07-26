@@ -26,7 +26,7 @@ BR2_PACKAGE_ATBM60XX_MODEL_603X=y
 BR2_PACKAGE_ATBM60XX_INTERFACE_USB=y
 ~~~
 
-- modifies file */overlay/etc/network/interfaces.d/wlan0* to (not shure this is necessary.... under test):
+- modifies file */overlay/etc/network/interfaces.d/wlan0* to (I'm not sure this is necessary.... under test):
 
 ~~~
 auto wlan0
@@ -46,8 +46,9 @@ iface wlan0 inet dhcp
     post-down echo 7 > /sys/class/gpio/unexport
 ~~~
 
-- modifies the ethernet ip address in file *general/overlay/etc/init.d/S40network* from 192.168.2.1 (which is outside my subnet ip range) to 192.168.1.20 which is inside my subnet range and not in conflict with other devices connected to the my LAN.
-- includes WDR sensor files in folder
+- modifies the ethernet ip address in file *general/overlay/etc/init.d/S40network* from 192.168.2.1 (which is outside my subnet ip range) to 192.168.1.20 which is inside my subnet range and not in conflict with other devices connected to my LAN.
+- 
+- includes two sensor profiles with Wide Dynamic range (WDR) enabled in the folder:
 *general/package/goke-osdrv-gk7205v200/files/sensor/config/5M_imx335.ini
 general/package/goke-osdrv-gk7205v200/files/sensor/config/imx335_i2c_4M.ini*
 
