@@ -7,7 +7,7 @@ set_wireless() {
 	path=/etc/wireless
 	if $path/usb "$dev" || $path/sdio "$dev"; then
 		[ -n "$mac" ] && ip link set dev wlan0 address "$mac"
-		ifup wlan0
+		ifup -v wlan0
 	elif $path/modem "$dev"; then
 		ifup usb0
 		ifup eth1
@@ -18,12 +18,12 @@ set_wireless() {
 case "$1" in
 	start)
 		echo "Starting network..."
-		ifup lo
-		if [ -n "$dev" ]; then
+		ifup -v lo
+		#! if [ -n "$dev" ]; then
 			set_wireless
-		else
-			ifup eth0
-		fi
+		#! else
+			ifup -v eth0
+		#! fi
 		;;
 
 	stop)
