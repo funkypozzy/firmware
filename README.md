@@ -15,8 +15,8 @@ In particular this branch:
 if [ "$1" = "atbm603x-gk7205v300-xm-g6s" ]; then
   devmem 0x100C0080 32 0x530
   set_gpio 7 0
-	modprobe atbm603x_wifi_usb
-	exit 0
+  modprobe atbm603x_wifi_usb
+  exit 0
 fi
 ~~~ 
 - modifies the wifi secion in the file [/br-ext-chip-goke/configs/gk7205v300_ultimate_defconfig](/br-ext-chip-goke/configs/gk7205v300_ultimate_defconfig) to include drivers for generic ATBM603x wifi chip (it is necessary to re-build the firmware):
