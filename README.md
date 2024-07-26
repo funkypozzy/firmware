@@ -10,7 +10,7 @@ This branch is specific for IVG G6S (GK7205V300 + Sony IMX335) with the wifi/SD 
 ## WHAT YOU NEED - HARDWARE
  - the ip camera with the additional wifi/SD board (buy on aliexpress)
  - FTDI adapter
- - connection to UART pins of the board
+ - a wired connection to UART pins of the board
  - a computer (or a virtual machine) where to run UBUNTU 22.04 to build the firmware (I was not able to build the firmware with a Raspbian running on rpi4 or rpi5)
  - a computer where to run a TFTP server
  - a router where both the computer running the TFTP server and the ip camera can connect (to upload the new firmware connect the ip camera to the router with an ethernet cable since wifi is not yet activated)
