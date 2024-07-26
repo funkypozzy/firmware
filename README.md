@@ -42,7 +42,8 @@ iface wlan0 inet dhcp
 
 - a fixed value is assigned to the variable *dev* (i.e. dev=atbm603x-gk7205v300-xm-g6s) in file [/general/overlay/etc/init.d/S40network](/general/overlay/etc/init.d/S40network) to avoid to assign a value to the U-boot variable.
 
-- includes two sensor profiles with Wide Dynamic range (WDR) enabled in the folder:
-*general/package/goke-osdrv-gk7205v200/files/sensor/config/5M_imx335.ini
-general/package/goke-osdrv-gk7205v200/files/sensor/config/imx335_i2c_4M.ini*
+- includes two sensor profiles with the Wide Dynamic range (WDR) enabled in the folder:
+*5M_imx335.ini* and 
+*imx335_i2c_4M.ini*
+[/general/package/goke-osdrv-gk7205v200/files/sensor/config](/general/package/goke-osdrv-gk7205v200/files/sensor/config)
 
