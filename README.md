@@ -1,28 +1,28 @@
-![OpenIPC Logo](https://cdn.themactep.com/images/logo_openipc.png)
-
 ## Customised OpenIPC firmware for IVG G6S (GK7205V300 + Sony IMX335) with the wifi/SD board IPC-38x38-WIFI-IF V1.02 - ATBM603x
 
-This branch, based on OpenIPC firmware, is specific for IVG G6S (GK7205V300 + Sony IMX335) with the wifi/SD board IPC-38x38-WIFI-IF V1.02 - ATBM603x (see following images of the board):
+This branch, based on OpenIPC firmware, is specific board IVG G6S (GK7205V300 + Sony IMX335) with the wifi/SD module IPC-38x38-WIFI-IF V1.02 - ATBM603x (see following images for reference):
 
-![01](https://github.com/user-attachments/assets/023cc734-7e30-40a9-97f6-a4408ba3ab03)
 ![02](https://github.com/user-attachments/assets/26a63724-caa8-4dd7-91f2-a11ff5306fbe)
+![01](https://github.com/user-attachments/assets/023cc734-7e30-40a9-97f6-a4408ba3ab03)
+
 
 ## WHAT YOU NEED - HARDWARE
  - the ip camera with the additional wifi/SD board (buy on aliexpress), a 12V power supply and an ethernet cable.
  - an FTDI adapter for 3V3. My FTDI adapter has a mini-USB connection (not micro-USB!) so ensure that you also have the proper USB cable.
  - a clever hard-wired connection to the UART TX/RX pins and GND of the ip camera (e.g. see the following image):
 ![20240726_124051](https://github.com/user-attachments/assets/ac0ab764-4299-4e69-966c-97fbb0092130)
+![Senza titolo](https://github.com/user-attachments/assets/35c97371-6608-45fc-ba23-1b52e78daeb6)
  - a computer (in my case an Hyper-V virtual machine running under Windows 11) with UBUNTU 22.04 to build the firmware.  FYI, I was not able to build the firmware with Raspbian running on rpi4 or rpi5.
  - a computer to run Putty, the TFTP server, connect the FTDI adapter. In my case it is a Windows 11 PC.
- - a LAN connection between the computer running the TFTP server and the ip camera to upload the new firmware. Since the camera is already wired connected to the computer via the FTDI adapter, for me the easiest way is to connect the computer directly to the ip camera with an ethernet cable, but you may decide to connect both computer and and the ip camera to a router. The ethernet cable ir necessary since wifi is not yet activated.
+ - a LAN connection between the computer running the TFTP server and the ip camera to upload the new firmware. Since the camera is already wire connected to the computer via the FTDI adapter, for me the easiest way is to connect the computer directly to the ip camera with an ethernet cable, but you may decide to communicate between your computer and and the ip camera via a router. The ethernet cable is necessary since wifi is not yet activated.
    
 ## WHAT YOU NEED - SOFTWARE
-- a TFTP software as for example Tftpd64 (ensure firewall is not blocking the server)
+- a TFTP software as for example [Tftpd64](https://pjo2.github.io/tftpd64/) (ensure firewall is not blocking the server)
 - UBUNTU 22.04 to build the firmware (I was not able to build the firmware with a Raspbian running on rpi4 or rpi5)
-- Putty
+- an SSH and telnet client [PuTTY](https://www.putty.org/)
 
 ## MY STORY FROM THE BEGINNING
-I was looking for a cheap ip camera to monitor the car parking in front of my building. I searched for an image sensor suitable for low light conditions in order to discreetely see distant objects (up to 80 meters) without need of strong illumination (with infrared or visible light) during night.
+I was looking for a cheap ip camera to monitor the car parking in front of my building. I searched for an image sensor suitable for low light conditions in order to discreetely see distant objects (up to 80 meters) without need of illumination (with infrared or visible light) during night.
 
 Required features:
 - a cheap ip camera
@@ -40,9 +40,11 @@ I found these products:
 My choice was the GK7205V300 + IMX335. It was delivered with a stock firmware and a rich featured web interface, but I was completely disappointed when I realized that installing a browser plugin named "VideoPlayTool.exe" was mandatory. No chance to access the web interface via Android Chrome since plugin installation is not possible.
 
 Hopefully the open source firmware OpenIPC was available for this board and the web interface doesn't require special plugins.
+I forked the OpenIPC repository and then I created this branch namend "wifi" (look at the web address, this is not the main repository, but a branch) to do my experiments.
+
 
 ## FLASHING THE ORIGINAL FIRMWARE
-Installing the OpenIPC firmware has been a more difficult process than expected mainly because the original firmware was password protected. Long story short... I was able to remove the lock with BUILDER.
+Installing the OpenIPC firmware has been a more difficult process than expected mainly because the original firmware was password protected. Long story short... I was able to remove the lock with the [Debrick](https://github.com/OpenIPC/debrickDebrick) utility.
 Installing wifi drivers and setup wifi connection was even more challenging and this is the reason because I decided to share my experience in this guide.
 
 ## THESE ARE STILL EXPERIMENTAL SETTINGS FOR MY PERSONAL USE!
