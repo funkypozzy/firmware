@@ -1,6 +1,7 @@
 ## Customised OpenIPC firmware for IVG G6S (GK7205V300 + Sony IMX335) with the wifi/SD board IPC-38x38-WIFI-IF V1.02 - ATBM603x
 
 I forked the OpenIPC repository and then I created this branch namend "wifi" (look at the web address, this is not the main repository, but a branch) to do my experiments.
+
 ![image](https://github.com/user-attachments/assets/226fbad1-3bf7-4fd5-a5b6-ad63b9eab8b4)
 
 This branch, based on OpenIPC firmware, is specific board IVG G6S (GK7205V300 + Sony IMX335) with the wifi/SD module IPC-38x38-WIFI-IF V1.02 - ATBM603x (see following images for reference):
