@@ -1,5 +1,8 @@
 ## Customised OpenIPC firmware for IVG G6S (GK7205V300 + Sony IMX335) with the wifi/SD board IPC-38x38-WIFI-IF V1.02 - ATBM603x
 
+I forked the OpenIPC repository and then I created this branch namend "wifi" (look at the web address, this is not the main repository, but a branch) to do my experiments.
+![image](https://github.com/user-attachments/assets/226fbad1-3bf7-4fd5-a5b6-ad63b9eab8b4)
+
 This branch, based on OpenIPC firmware, is specific board IVG G6S (GK7205V300 + Sony IMX335) with the wifi/SD module IPC-38x38-WIFI-IF V1.02 - ATBM603x (see following images for reference):
 
 ![02](https://github.com/user-attachments/assets/26a63724-caa8-4dd7-91f2-a11ff5306fbe)
@@ -40,7 +43,6 @@ I found these products:
 My choice was the GK7205V300 + IMX335. It was delivered with a stock firmware and a rich featured web interface, but I was completely disappointed when I realized that installing a browser plugin named "VideoPlayTool.exe" was mandatory. No chance to access the web interface via Android Chrome since plugin installation is not possible.
 
 Hopefully the open source firmware OpenIPC was available for this board and the web interface doesn't require special plugins.
-I forked the OpenIPC repository and then I created this branch namend "wifi" (look at the web address, this is not the main repository, but a branch) to do my experiments.
 
 
 ## FLASHING THE ORIGINAL FIRMWARE
