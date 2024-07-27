@@ -8,7 +8,7 @@ This branch based on OpenIPC firmware is specific for IVG G6S (GK7205V300 + Sony
 ![02](https://github.com/user-attachments/assets/26a63724-caa8-4dd7-91f2-a11ff5306fbe)
 
 ## WHAT YOU NEED - HARDWARE
- - the ip camera with the additional wifi/SD board (buy on aliexpress) and a 12V power supply.
+ - the ip camera with the additional wifi/SD board (buy on aliexpress), a 12V power supply and an ethernet cable.
  - an FTDI adapter for 3V3. My FTDI adapter has a mini-USB connection (not micro-USB!) so ensure that you also have the proper USB cable.
  - a clever hard-wired connection to the UART TX/RX pins and GND of the ip camera (e.g. see the following image):
 ![20240726_124051](https://github.com/user-attachments/assets/ac0ab764-4299-4e69-966c-97fbb0092130)
@@ -22,7 +22,7 @@ This branch based on OpenIPC firmware is specific for IVG G6S (GK7205V300 + Sony
 - Putty
 
 ## MY STORY FROM THE BEGINNING
-I was looking for a cheap ip camera to monitor the car parking in front of my building. I searched for an image sensor suitable for low light conditions in order to discreetely see distant objects (up to 80 meters) without need of strong infrared or visible light during night.
+I was looking for a cheap ip camera to monitor the car parking in front of my building. I searched for an image sensor suitable for low light conditions in order to discreetely see distant objects (up to 80 meters) without need of strong illumination (with infrared or visible light) during night.
 
 Required features:
 - a cheap ip camera
@@ -35,11 +35,15 @@ I found these products:
 - Hickvision Darkfighter (very expensive)
 - Dahua Starlight (expensive)
 - Arducam IMX462 STARVIS Camera Module (~40€, raspberry not included)
-- a bare Camera board GK7205V300 + 5MP IMX33 Sony Starvis sensor + wifi (33€ on Aliexpress). I salvaged a 12V power supply from an old router.
+- a bare camera board GK7205V300 + 5MP IMX33 Sony Starvis sensor + wifi (33€ on Aliexpress). I salvaged a 12V power supply from an old router.
 
-My choice was the GK7205V300 + IMX335. It came with a stock firmware and a rich featured web interface, but I was completely disappointed when I realized that installing a browser plugin named "VideoPlayTool.exe" was mandatory. No chance to access the web interface via Android Chrome since plugin installation is not possible.
+My choice was the GK7205V300 + IMX335. It was delivered with a stock firmware and a rich featured web interface, but I was completely disappointed when I realized that installing a browser plugin named "VideoPlayTool.exe" was mandatory. No chance to access the web interface via Android Chrome since plugin installation is not possible.
 
-Hopefully the open source firmware OPENIPC was available for this board and the web interface doesn't require special plugins.
+Hopefully the open source firmware OpenIPC was available for this board and the web interface doesn't require special plugins.
+
+## FLASHING THE ORIGINAL FIRMWARE
+Installing the OpenIPC firmware has been a more difficult process than expected mainly because the original firmware was password protected. Long story short... I was able to remove the lock with BUILDER.
+Installing wifi drivers and setup wifi connection was even more challenging and this is the reason because I decided to share my experience in this guide.
 
 ## THESE ARE STILL EXPERIMENTAL SETTINGS FOR MY PERSONAL USE!
 
