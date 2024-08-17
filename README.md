@@ -1,10 +1,10 @@
 ## Customised OpenIPC firmware for IVG G6S (GK7205V300 + Sony IMX335) with the wifi/SD board IPC-38x38-WIFI-IF V1.02 - ATBM603x
 
-I forked the OpenIPC repository and then I created branch named "wifi" to do my experiments, before to make any pull request (PR).
+I forked the OpenIPC repository and then I created branch named "wifi" to do my experiments.
 
 ![image](https://github.com/user-attachments/assets/226fbad1-3bf7-4fd5-a5b6-ad63b9eab8b4)
 
-This branch, based on OpenIPC firmware, is mainly to test the wifi/SD module IPC-38x38-WIFI-IF V1.02 - ATBM603x (see following images for reference) for my board IVG G6S (GK7205V300 + Sony IMX335).
+This branch, based on OpenIPC firmware, is mainly enable the wifi connection at first boot, without need of additional manual input. The wifi/SD module is IPC-38x38-WIFI-IF V1.02 - ATBM603x (see following images for reference) for my board IVG G6S (GK7205V300 + Sony IMX335).
 
 ![02](https://github.com/user-attachments/assets/26a63724-caa8-4dd7-91f2-a11ff5306fbe)
 ![01](https://github.com/user-attachments/assets/023cc734-7e30-40a9-97f6-a4408ba3ab03)
@@ -17,8 +17,8 @@ This branch, based on OpenIPC firmware, is mainly to test the wifi/SD module IPC
 ![20240726_124051](https://github.com/user-attachments/assets/ac0ab764-4299-4e69-966c-97fbb0092130)
 ![Senza titolo](https://github.com/user-attachments/assets/35c97371-6608-45fc-ba23-1b52e78daeb6)
  - a computer (in my case an Hyper-V virtual machine running under Windows 11) with UBUNTU 22.04 to build the firmware.  FYI, I was not able to build the firmware with Raspbian running on rpi4 or rpi5.
- - a computer to run Putty, the TFTP server, connect the FTDI adapter. In my case it is a Windows 11 PC.
- - a LAN connection between the computer running the TFTP server and the ip camera to upload the new firmware. Since the camera is already wire connected to the computer via the FTDI adapter, for me the easiest way is to connect the computer directly to the ip camera with an ethernet cable, but you may decide to communicate between your computer and and the ip camera via a router. The ethernet cable is necessary since wifi is not yet activated.
+ - a computer to run Putty, the TFTP server and connect the FTDI adapter via usb. In my case it is a Windows 11 PC.
+ - a LAN connection between the computer running the TFTP server and the ip camera in order to upload the new firmware. Since the camera is already wire connected to the computer via the FTDI adapter, for me the easiest way is to connect also the computer directly to the ip camera with an ethernet cable, but you may decide to communicate between your computer and and the ip camera via a router. The ethernet cable is necessary since wifi is not yet activated before uploading the customized firmware.
    
 ## WHAT YOU NEED - SOFTWARE
 - a TFTP software as for example [Tftpd64](https://pjo2.github.io/tftpd64/) (ensure firewall is not blocking the server)
@@ -30,7 +30,7 @@ This branch, based on OpenIPC firmware, is mainly to test the wifi/SD module IPC
 
 
 ## MY STORY FROM THE BEGINNING
-I was looking for a cheap ip camera to monitor the car parking in front of my building. I searched for an image sensor suitable for low light conditions in order to discreetely see distant objects (up to 80 meters) without need of illumination (with infrared or visible light) during night.
+I was looking for a cheap ip camera to monitor the car parking in front of my building. I searched for an image sensor suitable for low light conditions in order to discreetely see distant objects (up to 80 meters) without need of illumination (no infrared or white light) during night.
 
 Required features:
 - a cheap ip camera
@@ -45,9 +45,9 @@ I found these products:
 - Arducam IMX462 STARVIS Camera Module (~40€, raspberry not included)
 - a bare camera board GK7205V300 + 5MP IMX33 Sony Starvis sensor + wifi (33€ on Aliexpress). I salvaged a 12V power supply from an old router.
 
-My choice was the GK7205V300 + IMX335. It was delivered with a stock firmware and a rich featured web interface, but I was completely disappointed when I realized that installing a browser plugin named "VideoPlayTool.exe" was mandatory. No chance to access the web interface via Android Chrome since plugin installation is not possible.
+My choice was the GK7205V300 + IMX335. It was delivered with a chinese looking stock firmware and a rich featured web interface, but I was completely disappointed when I realized that installing a browser plugin named "VideoPlayTool.exe" was mandatory. No chance to access the web interface via Android Chrome since plugin installation is not possible.
 
-Hopefully the open source firmware OpenIPC was available for this board and the web interface doesn't require special plugins.
+Hopefully the open source firmware OpenIPC was available for this board.
 
 
 ## FLASHING THE ORIGINAL FIRMWARE
