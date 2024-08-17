@@ -53,6 +53,8 @@ Hopefully the open source firmware OpenIPC was available for this board.
 ## FLASHING THE ORIGINAL FIRMWARE
 Installing the OpenIPC firmware has been a more difficult process than expected mainly because the original firmware was password protected. Long story short... I was able to remove the lock with the [Debrick](https://github.com/OpenIPC/debrickDebrick) utility.
 Installing wifi drivers and setup the wifi connection was even more challenging and this is the reason because I decided to share my experience in this guide.
+OpenIPC website instructions look straightforward, but they are not properly manteined. OpenIPC github repository together with telegram channel are the main resources, but topics are not presented in logical order so you need some days/weeks (depending on your skills) to figure out how the system works.
+
 
 ## CUSTOMIZED FILES
 
