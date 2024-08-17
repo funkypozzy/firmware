@@ -53,8 +53,7 @@ Hopefully the open source firmware OpenIPC was available for this board.
 ## FLASHING THE ORIGINAL FIRMWARE
 Installing the OpenIPC firmware has been a more difficult process than expected mainly because the original firmware was password protected. Long story short... I was able to remove the lock with the [Debrick](https://github.com/OpenIPC/debrickDebrick) utility.
 Installing wifi drivers and setup the wifi connection was even more challenging and this is the reason because I decided to share my experience in this guide.
-OpenIPC website instructions look straightforward, but they are not properly manteined. OpenIPC github repository together with telegram channel are the main resources, but topics are not presented in logical order so you need some days/weeks (depending on your skills) to figure out how the system works.
-
+OpenIPC website instructions look straightforward, but they are incompleted. OpenIPC github repository together with telegram channel are the main resources, but also here topics are not presented in a logical order so you need some days/weeks (depending on your skills) to figure out how the system works and where to look. For example, the forst time I was able to install the OpenIPC firmware and access the web ui, I immediatly search for a button to activate the wifi, but then I realise that there are many other steps to be done before at code level ...
 
 ## CUSTOMIZED FILES
 
@@ -91,9 +90,9 @@ Note: SSID and Wifipassword are placeholder to be modified with your actual SSID
 
 - modifies the ethernet ip address in file [/general/overlay/etc/init.d/S40network](/general/overlay/etc/init.d/S40network) from 192.168.2.1 (which is outside my subnet ip range) to 192.168.1.20 which is inside my subnet range and not in conflict with other devices connected to my LAN.
 
-- a fixed value is assigned to the variable *dev* (i.e. dev=atbm603x-gk7205v300-xm-g6s) in file [/general/overlay/etc/init.d/S40network](/general/overlay/etc/init.d/S40network) This is a to avoid the need of command fw_wlandev = atbm603x-gk7205v300-xm-g6s to manually assign a value to the U-boot variable.
+- a fixed value is assigned to the variable *dev* (i.e. dev=atbm603x-gk7205v300-xm-g6s) in file [/general/overlay/etc/init.d/S40network](/general/overlay/etc/init.d/S40network) Without this modification you should manually assign a value to the U-boot variable with command fw_setenv wlandev = atbm603x-gk7205v300-xm-g6s .
 
-- modifies the majestic.yaml file to activate sensor profiles specific for 5MP and Wide Dynamic range (WDR):
+- modifies the majestic.yaml file to activate sensor profiles specific for 5 mega pixel resolution and Wide Dynamic range (WDR):
 *5M_imx335.ini* and 
 *imx335_i2c_4M.ini*
 [/general/package/goke-osdrv-gk7205v200/files/sensor/config](/general/package/goke-osdrv-gk7205v200/files/sensor/config)
