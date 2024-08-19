@@ -3,6 +3,8 @@ dev=atbm603x-gk7205v300-xm-g6s #!dev=$(fw_printenv -n wlandev)
 mac=$(fw_printenv -n wlanmac)
 net=$(fw_printenv -n netaddr_fallback)
 
+echo "Marco: running C:\Users\WIN11-TOGO\Documents\GitHub\firmware\general\overlay\etc\init.d"
+
 set_wireless() {
 	path=/etc/wireless
 	if $path/usb "$dev" || $path/sdio "$dev"; then
