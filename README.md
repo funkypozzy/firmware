@@ -93,7 +93,14 @@ Note: SSID and Wifipassword are placeholder to be modified with your actual SSID
 - a fixed value is assigned to the variable *dev* (i.e. dev=atbm603x-gk7205v300-xm-g6s) in file [/general/overlay/etc/init.d/S40network](/general/overlay/etc/init.d/S40network) Without this modification you should manually assign a value to the U-boot variable with command fw_setenv wlandev = atbm603x-gk7205v300-xm-g6s .
 
 - modifies the majestic.yaml file to activate sensor profiles specific for 5 mega pixel resolution and Wide Dynamic range (WDR):
-*5M_imx335.ini* and 
-*imx335_i2c_4M.ini*
-[/general/package/goke-osdrv-gk7205v200/files/sensor/config](/general/package/goke-osdrv-gk7205v200/files/sensor/config)
+
+~~~
+cli -s .isp.lowDelay true
+cli -s .isp.iqProfile /etc/sensors/iq/imx335.ini
+cli -s .isp.sensorConfig /etc/sensors/5M_imx335.ini
+
+killall majestic
+sleep 3
+majestic
+~~~
 
