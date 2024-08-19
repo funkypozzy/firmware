@@ -117,7 +117,6 @@ sudo make deps
 > [!NOTE]
 > Before making firmware, remember to replace **SSID** and **Wifipassword** in local file "wlan0" with your actual SSID and password.
 ~~~
-make
+make BOARD=gk7205v300_ultimate
 ~~~
-Select GK7205V300_ultimate.
 Wait until make process is finished.
