@@ -4,7 +4,9 @@ I forked the OpenIPC repository and then I created branch named "wifi" to do my 
 
 ![image](https://github.com/user-attachments/assets/226fbad1-3bf7-4fd5-a5b6-ad63b9eab8b4)
 
-This branch, based on OpenIPC firmware, is mainly to enable the wifi connection at first boot, without need of additional manual input. The wifi/SD module is the IPC-38x38-WIFI-IF V1.02 - ATBM603x (see following images for reference) for my board IVG G6S (GK7205V300 + Sony IMX335).
+The idea is to keep the code as much as possible aligned with the OpenIPC master branch and customise the firmware just enough to automatically connet the camera to my home wifi network, without the need of an ethernet cable, UART connection or manual input. Any other changes can be made later using SSH or cli...
+
+The wifi/SD module is the IPC-38x38-WIFI-IF V1.02 - ATBM603x (see following images for reference) for my board IVG G6S (GK7205V300 + Sony IMX335).
 
 ![02](https://github.com/user-attachments/assets/26a63724-caa8-4dd7-91f2-a11ff5306fbe)
 ![01](https://github.com/user-attachments/assets/023cc734-7e30-40a9-97f6-a4408ba3ab03)
