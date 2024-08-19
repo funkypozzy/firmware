@@ -83,7 +83,7 @@ see file
 > [!NOTE]
 > SSID and Wifipassword are placeholder to be modified with your actual SSID and password.
 
-- modifies the ethernet ip address in file [/general/overlay/etc/init.d/S40network](/general/overlay/etc/init.d/S40network) from 192.168.2.1 (which is outside my subnet ip range) to 192.168.1.20 which is inside my subnet range and not in conflict with other devices connected to my LAN.
+- modifies the ethernet ip fallback address in file [/general/overlay/etc/init.d/S40network](/general/overlay/etc/init.d/S40network) from 192.168.2.1 (which is outside my subnet ip range) to 192.168.1.20 which is inside my subnet range and not in conflict with other devices connected to my LAN. This addresso is used to get access to the ip camera via ethernet cable in case the wifi connection can not be established.
 
 - a fixed value is assigned to the variable *dev* (i.e. dev=atbm603x-gk7205v300-xm-g6s) in file [/general/overlay/etc/init.d/S40network](/general/overlay/etc/init.d/S40network) Without this modification you should manually assign a value to the U-boot variable with command fw_setenv wlandev = atbm603x-gk7205v300-xm-g6s .
 
