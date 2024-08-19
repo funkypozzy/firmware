@@ -75,7 +75,7 @@ BR2_PACKAGE_ATBM60XX_MODEL_603X=y
 BR2_PACKAGE_ATBM60XX_INTERFACE_USB=y
 ~~~
 Wifi drivers are not included by default in OpenIPC firmware.
-- modifies file [general/overlay/etc/network/interfaces.d/wlan0](general/overlay/etc/network/interfaces.d/wlan0) to:
+- modifies file [general/overlay/etc/network/interfaces.d/wlan0](general/overlay/etc/network/interfaces.d/wlan0) to include specific instruction to power on/off the wifi board:
 
 ~~~
 see file
