@@ -24,7 +24,7 @@ This branch, based on OpenIPC firmware, is mainly to enable the wifi connection 
 - a TFTP software as for example [Tftpd64](https://pjo2.github.io/tftpd64/) (ensure firewall is not blocking the server)
 
   ![image](https://github.com/user-attachments/assets/f0898e11-57f6-47f5-b634-25aad02b4c9f)
-- UBUNTU 22.04 to build the firmware (I was not able to build the firmware with a Raspbian running on rpi4 or rpi5)
+- UBUNTU 22.04 to build the firmware (I was not able to build the firmware with a Raspbian running on rpi4 or rpi5) with 20GB storage.
 - an SSH and telnet client [PuTTY](https://www.putty.org/)
   ![image](https://github.com/user-attachments/assets/1998ea98-33e3-4eb8-b1b7-8c46bc77c10f)
 
