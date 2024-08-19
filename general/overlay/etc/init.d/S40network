@@ -1,5 +1,5 @@
 #!/bin/sh
-dev=atbm603x-gk7205v300-xm-g6s #!dev=$(fw_printenv -n wlandev)
+dev=atbm603x-gk7205v300-xm-g6s #Marco dev=$(fw_printenv -n wlandev)
 mac=$(fw_printenv -n wlanmac)
 net=$(fw_printenv -n netaddr_fallback)
 
