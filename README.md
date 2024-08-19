@@ -78,13 +78,7 @@ Wifi drivers are not included by default in OpenIPC firmware.
 - modifies file [general/overlay/etc/network/interfaces.d/wlan0](general/overlay/etc/network/interfaces.d/wlan0) to:
 
 ~~~
-iface wlan0 inet dhcp
-    pre-up wpa_passphrase SSID WiFipassword > /tmp/wpa_supplicant.conf
-    pre-up sed -i 's/#psk.*/scan_ssid=1/g' /tmp/wpa_supplicant.conf
-    pre-up wpa_supplicant -B -i wlan0 -D nl80211,wext -c /tmp/wpa_supplicant.conf
-    post-down killall -q wpa_supplicant
-    post-down echo 1 > /sys/class/gpio/gpio7/value
-    post-down echo 7 > /sys/class/gpio/unexport
+see file
 ~~~
 Note: SSID and Wifipassword are placeholder to be modified with your actual SSID and password.
 
