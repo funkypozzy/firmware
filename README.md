@@ -81,13 +81,16 @@ Wifi drivers are not included by default in OpenIPC firmware.
 see file
 ~~~
 > [!NOTE]
-> SSID and Wifipassword are placeholder to be modified with your actual SSID and password.
+> **SSID** and **Wifipassword** are placeholder to be modified with your actual SSID and password.
 
 - modifies the ethernet ip fallback address in file [/general/overlay/etc/init.d/S40network](/general/overlay/etc/init.d/S40network) from 192.168.2.1 (which is outside my subnet ip range) to 192.168.1.20 which is inside my subnet range and not in conflict with other devices connected to my LAN. This addresso is used to get access to the ip camera via ethernet cable in case the wifi connection can not be established.
 
-- a fixed value is assigned to the variable *dev* (i.e. dev=atbm603x-gk7205v300-xm-g6s) in file [/general/overlay/etc/init.d/S40network](/general/overlay/etc/init.d/S40network) Without this modification you should manually assign a value to the U-boot variable with command fw_setenv wlandev = atbm603x-gk7205v300-xm-g6s .
+- a fixed value is assigned to the variable *dev* (i.e. dev=atbm603x-gk7205v300-xm-g6s) in file [/general/overlay/etc/init.d/S40network](/general/overlay/etc/init.d/S40network) Without this modification you should manually assign a value to the U-boot variable with command:
+~~~
+fw_setenv wlandev = atbm603x-gk7205v300-xm-g6s
+~~~
 
-- modifies the majestic.yaml file to activate sensor profiles specific for 5 mega pixel resolution and Wide Dynamic range (WDR):
+- modifies the majestic.yaml file using to activate sensor profiles specific for 5 mega pixel resolution and Wide Dynamic range (WDR):
 
 ~~~
 cli -s .isp.lowDelay true
@@ -98,4 +101,23 @@ killall majestic
 sleep 3
 majestic
 ~~~
-
+## BUILD CUSTOMIZED FIRMARE
+Opena a Ubuntu terminal:
+~~~
+sudo apt update
+sudo apt install git
+sudo apt install make
+~~~
+then:
+~~~
+git clone git clone --branch wifi https://github.com/funkypozzy/firmware.git
+cd openipc-firmware
+sudo make deps
+~~~
+> [!NOTE]
+> Before making firmware, remember to replace **SSID** and **Wifipassword** in local file "wlan0" with your actual SSID and password.
+~~~
+make
+~~~
+Select GK7205V300_ultimate.
+Wait until make process is finished.
