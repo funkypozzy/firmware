@@ -123,4 +123,28 @@ sudo make deps
 ~~~
 make BOARD=gk7205v300_ultimate
 ~~~
-Wait until make process is finished.
+Wait until make process is finished. Check if errors
+
+## Installing Firmware
+
+## Firmware update
+
+On Ubuntu, using scp copy the two files (rootfs and uImage) to your camera /tmp folder (/tmp folder is a temporary storage, as big as your camera free RAM):
+
+~~~
+cd output/images/
+scp uImage* rootfs* root@<yourcameraip>:/tmp/
+~~~
+
+On the camera run:
+~~~
+soc=$(fw_printenv -n soc)
+sysupgrade --kernel=/tmp/uImage.${soc} --rootfs=/tmp/rootfs.squashfs.${soc} -z
+~~~
+
+You can add -n key if you need to clean overlay after update (reset all settings to default). After the instalation is complete, the camera will reboot automatically. Connect again to the camera and run this command (same as -n in the previous command):
+~~~
+firstboot
+~~~
+
+Remember! The user and password will be reset to default in most cases (the default is usually root/12345)
