@@ -102,7 +102,7 @@ sleep 3
 majestic
 ~~~
 ## BUILD CUSTOMIZED FIRMARE
-Opena a Ubuntu terminal:
+Open Ubuntu terminal and, if not already available, intall "git" and "make":
 ~~~
 sudo apt update
 sudo apt install git
