@@ -156,6 +156,9 @@ reset
 ~~~
 
 Let the camera reboot and start linux.
+Congratulations! At this moment, you have OpenIPC Firmware (Ultimate) installed.
+Default username and password are root/12345.
+Open camera's web interface on port 85 (http://<camera_ip>:85/). You will be asked to set up your own password.
 
 ## Firmware update
 
