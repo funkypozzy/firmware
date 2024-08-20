@@ -1,6 +1,5 @@
 iface wlan0 inet dhcp
-    pre-up modprobe atbm603x_wifi_usb
-    pre-up wpa_passphrase SSID Wifipassword > /tmp/wpa_supplicant.conf
+    pre-up wpa_passphrase SSID WiFipassword > /tmp/wpa_supplicant.conf
     pre-up sed -i 's/#psk.*/scan_ssid=1/g' /tmp/wpa_supplicant.conf
     pre-up wpa_supplicant -B -i wlan0 -D nl80211,wext -c /tmp/wpa_supplicant.conf
     post-down killall -q wpa_supplicant
