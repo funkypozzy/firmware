@@ -6,7 +6,7 @@
 #
 # - move resolv.conf path to /tmp
 # - remove interface notes from resolv.conf
-echo "Marco: running \firmware\general\overlay\usr\share\udhcp\default.script"
+
 
 [ -z "$1" ] && echo "Error: should be called from udhcpc" && exit 1
 
