@@ -114,7 +114,7 @@ sudo apt install make
 ~~~
 then:
 ~~~
-git clone --branch wifi https://github.com/funkypozzy/firmware.git
+git clone --branch wifi https://github.com/funkypozzy/firmware.git openipc-firmware
 cd openipc-firmware
 sudo make deps
 ~~~
