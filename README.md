@@ -151,7 +151,12 @@ sf probe 0; sf erase 0x50000 0x300000; sf write ${baseaddr} 0x50000 ${filesize}
 mw.b ${baseaddr} 0xff 0x500000
 tftp ${baseaddr} rootfs.squashfs.${soc}
 sf probe 0; sf erase 0x350000 0xa00000; sf write ${baseaddr} 0x350000 ${filesize}
+~~~
 
+> [!NOTE]
+> Unplug network cable.
+
+~~~
 reset
 ~~~
 
