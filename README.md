@@ -100,16 +100,20 @@ iface wlan0 inet dhcp
 fw_setenv wlandev = atbm603x-gk7205v300-xm-g6s
 ~~~
 
-- modifies the majestic.yaml file using to activate sensor profiles specific for 5 mega pixel resolution and Wide Dynamic range (WDR):
-
+- modifies the majestic.yaml file using the yaml-cli utility to activate sensor profiles specific for 5 mega pixel resolution and other minor tunings:
 ~~~
-cli -s .isp.lowDelay true
 cli -s .isp.iqProfile /etc/sensors/iq/imx335.ini
 cli -s .isp.sensorConfig /etc/sensors/5M_imx335.ini
-
-killall majestic
-sleep 3
-majestic
+cli -s .isp.drc 400
+cli -s .isp.slowShutter high
+cli -s .isp.exposure 100000
+cli -s .isp.aGain 16384
+cli -s .isp.dGain 2048
+cli -s .isp.ispGain 8192
+~~~
+Restart majestic streamer to apply settings:
+~~~
+killall -1 majestic
 ~~~
 ## BUILD CUSTOMIZED FIRMARE
 Open Ubuntu terminal and, if not already available, intall "git" and "make":
