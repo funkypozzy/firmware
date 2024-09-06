@@ -59,6 +59,17 @@ OpenIPC website instructions look straightforward, but they are incompleted. Ope
 
 The idea is to keep the code as much as possible aligned with the OpenIPC master branch and customise the firmware just enough to automatically connet the camera to my home wifi, without the need of an ethernet cable or UART connection. Any other changes can be made later using SSH or cli...
 
+## Restore the camera stock firmware
+~~~
+# Enter commands line by line! Do not copy and paste multiple lines at once!
+setenv ipaddr 192.168.137.2; setenv serverip 192.168.137.1
+setenv ethaddr 9a:5b:06:f5:cb:c6
+saveenv
+run uknor16m; run urnor16m
+sf erase 0xD50000 0x2b0000
+reset
+~~~
+
 ## CUSTOMIZED FILES
 
 In particular this branch:
