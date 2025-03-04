@@ -148,14 +148,15 @@ Wait until make process is finished. Check for any errors. Output firmware files
 ## How to install for the first time the customized firmware
 
 Connect UART and ethernet cable (only for the fist installation of the customized OpenIPC firmware) to the ip camera.
-Switch on the camera and press CTRL+C to interrupt the boot process. Now you are in the bootloader console.
+Run Putty console and run the tftp server. Ensure the tftp server is pointing to the folder where firmware output files have been generated. Ensure that any firewall is blocking the tftp server.
+Switch on the camera and press CTRL+C to interrupt the boot process.
+Now you are in the bootloader console.
 Set the ip address of the ip camera and the ip address of the computer where tftp server is running:
 ~~~
 setenv ipaddr 192.168.137.2
 setenv serverip 192.168.137.1
 ~~~
 
-Run Putty console and run the tftp server. Ensure the tftp server is pointing to the folder where firmware output files have been generated. Ensure that any firewall is blocking the tftp server.
 For NOR 16MB flash memory type (one row at time):
 ~~~
 mw.b ${baseaddr} 0xff 0x300000
@@ -175,7 +176,7 @@ reset
 ~~~
 
 Let the camera reboot and start linux.
-Congratulations! At this moment, you have OpenIPC Firmware (Ultimate) installed.
+Congratulations! At this moment, you have a customized OpenIPC Firmware (Ultimate) installed with wifi enabled.
 Default username and password are root/12345.
 Open camera's web interface on port 85 (http://<camera_ip>:85/). You will be asked to set up your own password.
 
