@@ -139,7 +139,7 @@ cd openipc-firmware
 sudo make deps
 ~~~
 > [!NOTE]
-> Before making firmware, remember to replace **SSID** and **Wifipassword** in local file "...\openipc-firmware/general/overlay/etc/network/interfaces.d/wlan0" with your actual SSID and password.
+> Before making firmware, remember to replace **SSID** and **Wifipassword** in local file ".../openipc-firmware/general/overlay/etc/network/interfaces.d/wlan0" with your actual SSID and password.
 ~~~
 make BOARD=gk7205v300_ultimate
 ~~~
