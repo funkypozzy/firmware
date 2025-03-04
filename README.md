@@ -59,7 +59,7 @@ OpenIPC website instructions look straightforward, but they are incompleted. Ope
 
 The idea is to keep the code as much as possible aligned with the OpenIPC master branch and customise the firmware just enough to automatically connet the camera to my home wifi, without the need of an ethernet cable or UART connection. Any other changes can be made later using SSH or cli...
 
-## Restore the camera stock firmware
+## How to restore the camera stock firmware
 ~~~
 # Enter commands line by line! Do not copy and paste multiple lines at once!
 setenv ipaddr 192.168.137.2; setenv serverip 192.168.137.1
@@ -70,10 +70,10 @@ sf erase 0xD50000 0x2b0000
 reset
 ~~~
 
-## CUSTOMIZED FILES
+## HOW TO CUSTOMIZE FIRMWARE TO ENABLE WIFI
 
-In particular this branch:
-- (SUPERSEDED: since August 2024, this modification has been merged to the master repository of OpenIPC, however the firmware still rewuires to rebuild in order to include wifi drivers) Modifies the file [general/overlay/etc/wireless/usb](general/overlay/etc/wireless/usb)  to include the required instruction to power on the wifi board based on the ATBM603x wifi chip (see images above). In particular the following lines have been added:
+This branch of the original OpenIPC github repository:
+- (SUPERSEDED: since August 2024, this modification has been merged to the master repository of OpenIPC, however the firmware still rewuires to rebuild in order to include wifi drivers) modifies the file [general/overlay/etc/wireless/usb](general/overlay/etc/wireless/usb) to include the required instruction to power on the wifi board based on the ATBM603x wifi chip (see images above). The following lines have been added:
 ~~~ # GK7205V300 XM IVG-G6S
 if [ "$1" = "atbm603x-gk7205v300-xm-g6s" ]; then
   devmem 0x100C0080 32 0x530
@@ -82,13 +82,13 @@ if [ "$1" = "atbm603x-gk7205v300-xm-g6s" ]; then
   exit 0
 fi
 ~~~
-- modifies the wifi secion in the file [/br-ext-chip-goke/configs/gk7205v300_ultimate_defconfig](/br-ext-chip-goke/configs/gk7205v300_ultimate_defconfig) to include drivers for generic ATBM603x wifi chip. After file modification, it is necessary to re-build the firmware:
+- modifies the file [/br-ext-chip-goke/configs/gk7205v300_ultimate_defconfig](/br-ext-chip-goke/configs/gk7205v300_ultimate_defconfig) to include drivers for generic ATBM603x wifi chip. 
 ~~~ 
 BR2_PACKAGE_ATBM60XX=y
 BR2_PACKAGE_ATBM60XX_MODEL_603X=y
 BR2_PACKAGE_ATBM60XX_INTERFACE_USB=y
 ~~~
-Wifi drivers are not included by default in OpenIPC firmware.
+After file modification, it is necessary to re-build the firmware since wifi drivers are not included by default in OpenIPC firmware.
 - modifies file [general/overlay/etc/network/interfaces.d/wlan0](general/overlay/etc/network/interfaces.d/wlan0) to include specific instruction to power on/off the wifi board:
 
 ~~~
@@ -105,7 +105,7 @@ iface wlan0 inet dhcp
 
 - modifies the ethernet ip fallback address in file [/general/overlay/etc/init.d/S40network](/general/overlay/etc/init.d/S40network) from 192.168.2.1 (which is outside my subnet ip range) to 192.168.1.20 which is inside my subnet range and not in conflict with other devices connected to my LAN. This addresso is used to get access to the ip camera via ethernet cable in case the wifi connection can not be established.
 
-- a fixed value is assigned to the variable *dev* (i.e. dev=atbm603x-gk7205v300-xm-g6s) in file [/general/overlay/etc/init.d/S40network](/general/overlay/etc/init.d/S40network) Without this modification you should manually assign a value to the U-boot variable with command:
+- assign a fixed value to the variable *dev* (i.e. dev=atbm603x-gk7205v300-xm-g6s) in file [/general/overlay/etc/init.d/S40network](/general/overlay/etc/init.d/S40network) Without this modification you should manually assign a value to the U-boot variable with command:
 ~~~
 fw_setenv wlandev = atbm603x-gk7205v300-xm-g6s
 ~~~
@@ -145,9 +145,9 @@ make BOARD=gk7205v300_ultimate
 ~~~
 Wait until make process is finished. Check for any errors. Output firmware files are now available in folder output\images.
 
-## Installing Firmware
+## How to install for the first time the customized firmware
 
-Connect UART and ethernet cable (only for the fist installation of OpenIPC firmware) to the ip camera.
+Connect UART and ethernet cable (only for the fist installation of the customized OpenIPC firmware) to the ip camera.
 Switch on the camera and press CTRL+C to interrupt the boot process. Now you are in the bootloader console.
 Set the ip address of the ip camera and the ip address of the computer where tftp server is running:
 ~~~
@@ -179,9 +179,9 @@ Congratulations! At this moment, you have OpenIPC Firmware (Ultimate) installed.
 Default username and password are root/12345.
 Open camera's web interface on port 85 (http://<camera_ip>:85/). You will be asked to set up your own password.
 
-## Firmware update
-
-On Ubuntu, using scp copy the two files (rootfs and uImage) to your camera /tmp folder (/tmp folder is a temporary storage, as big as your camera free RAM):
+## How to update the customized firmware (via wifi)
+Assuming the IP camera is already connected to your wifi network, you don't need UART and ethernet cable to update the firmware.
+On Ubuntu, use "scp" command to copy the two files (rootfs and uImage) to your camera /tmp folder (/tmp folder is a temporary storage, as big as your camera free RAM):
 
 ~~~
 cd output/images/
