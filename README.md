@@ -57,8 +57,6 @@ Installing the OpenIPC firmware has been a more difficult process than expected 
 Installing wifi drivers and setup the wifi connection was even more challenging and this is the reason because I decided to share my experience in this guide.
 OpenIPC website instructions look straightforward, but they are incompleted. OpenIPC github repository together with telegram channel are the main resources, but also here topics are not presented in a logical order so you need some days/weeks (depending on your skills) to figure out how the system works and where to look. For example, the first time I was able to install the OpenIPC firmware and access the web ui, I immediatly search for a button to activate the wifi, but then I realise that it requires to rebuild the firmware to include wifi drivers.
 
-The idea is to keep the code as much as possible aligned with the OpenIPC master branch and customise the firmware just enough to automatically connet the camera to my home wifi, without the need of an ethernet cable or UART connection. Any other changes can be made later using SSH or cli...
-
 ## How to restore the camera stock firmware
 ~~~
 # Enter commands line by line! Do not copy and paste multiple lines at once!
@@ -73,7 +71,7 @@ reset
 ## HOW TO CUSTOMIZE FIRMWARE TO ENABLE WIFI
 
 This branch of the original OpenIPC github repository:
-- (SUPERSEDED: since August 2024, this modification has been merged to the master repository of OpenIPC, however the firmware still rewuires to rebuild in order to include wifi drivers) modifies the file [general/overlay/etc/wireless/usb](general/overlay/etc/wireless/usb) to include the required instruction to power on the wifi board based on the ATBM603x wifi chip (see images above). The following lines have been added:
+- (SUPERSEDED: since August 2024, this modification has been merged to the master repository of OpenIPC, however the firmware still requires to rebuild in order to include wifi drivers) modifies the file [general/overlay/etc/wireless/usb](general/overlay/etc/wireless/usb) to include the required instruction to power on the wifi board based on the ATBM603x wifi chip (see images above). The following lines have been added:
 ~~~ # GK7205V300 XM IVG-G6S
 if [ "$1" = "atbm603x-gk7205v300-xm-g6s" ]; then
   devmem 0x100C0080 32 0x530
