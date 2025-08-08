@@ -1,6 +1,6 @@
 ## Customised OpenIPC firmware for IVG G6S (GK7205V300 + Sony IMX335) with the wifi/SD board IPC-38x38-WIFI-IF V1.02 - ATBM603x
 
-I forked the OpenIPC firmware official repository and then I created branch named "wifi" to do my experiments.
+I first forked the official OpenIPC/firmware repository into my own. Then, I created a new branch called "wifi" from my forked repository. This gives me three versions: the original repository managed by OpenIPC, my forked repository which is a snapshot at a certain date of the original, and the "wifi" branch where I will do my testing.
 
 ![image](https://github.com/user-attachments/assets/226fbad1-3bf7-4fd5-a5b6-ad63b9eab8b4)
 
@@ -104,7 +104,7 @@ iface wlan0 inet dhcp
 > [!NOTE]
 > **SSID** and **Wifipassword** are placeholder to be modified with your actual SSID and password.
 
-- modifies the ethernet ip fallback address in file [/general/overlay/etc/init.d/S40network](/general/overlay/etc/init.d/S40network) from 192.168.2.1 (which is outside my subnet ip range) to 192.168.1.20 which is inside my subnet range and not in conflict with other devices connected to my LAN. This addresso is used to get access to the ip camera via ethernet cable in case the wifi connection can not be established.
+- modifies the ethernet ip fallback address in file [/general/overlay/etc/init.d/S40network](/general/overlay/etc/init.d/S40network) from 192.168.2.1 (which is outside my subnet ip range) to 192.168.1.200 which is inside my subnet range and not in conflict with other devices connected to my LAN. This addresso is used to get access to the ip camera via ethernet cable in case the wifi connection can not be established.
 
 - assign a fixed value to the variable *dev* (i.e. dev=atbm603x-gk7205v300-xm-g6s) in file [/general/overlay/etc/init.d/S40network](/general/overlay/etc/init.d/S40network) Without this modification you should manually assign a value to the U-boot variable with command:
 ~~~
