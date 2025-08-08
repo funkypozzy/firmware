@@ -4,7 +4,7 @@ I first forked the official OpenIPC/firmware repository into my own. Then, I cre
 
 ![image](https://github.com/user-attachments/assets/226fbad1-3bf7-4fd5-a5b6-ad63b9eab8b4)
 
-The idea was to customise the firmware just enough to automatically connet the camera to my home wifi network, without the need of a wired connection like an ethernet cable or UART connection. Once the camera is connected to wifi, any other change can be made over the air using SSH or cli... This was especially useful when I experimented with different configurations.
+The idea was to customise the firmware just enough to automatically connect the camera to my home wifi network, without the need of a wired connection like an Ethernet cable or UART connection. Once the camera is connected to wifi, any other change can be made over the air using SSH or cli... This was especially useful when I experimented with different configurations.
 
 The wifi/SD module is the IPC-38x38-WIFI-IF V1.02 - ATBM603x (see following images for reference) for my board IVG G6S (GK7205V300 + Sony IMX335).
 
@@ -13,16 +13,16 @@ The wifi/SD module is the IPC-38x38-WIFI-IF V1.02 - ATBM603x (see following imag
 
 
 ## WHAT YOU NEED - HARDWARE
-Wired connections (ethernet + UART) are only necessary to load the modified firmware the first time.
+Wired connections (Ethernet + UART) are only necessary to load the modified firmware the first time.
 The necessary hardware is:
- - the ip camera with the additional wifi/SD board (buy on aliexpress), a 12V power supply and an ethernet cable.
+ - the IP camera with the additional wifi/SD board (buy on aliexpress), a 12V power supply and an Ethernet cable.
  - an FTDI adapter for 3V3. My FTDI adapter has a mini-USB connection (not micro-USB!) so ensure that you also have the proper USB cable.
- - a clever hard-wired connection to the UART TX/RX pins and GND of the ip camera (e.g. see the following image):
+ - a clever hard-wired connection to the UART TX/RX pins and GND of the IP camera (e.g. see the following image):
 ![20240726_124051](https://github.com/user-attachments/assets/ac0ab764-4299-4e69-966c-97fbb0092130)
 ![Senza titolo](https://github.com/user-attachments/assets/35c97371-6608-45fc-ba23-1b52e78daeb6)
  - a computer with UBUNTU 22.04 (or an Hyper-V virtual machine running UBUNTU 22.04) to build the firmware.  FYI, I was not able to build the firmware with Raspbian running on rpi4 or rpi5.
- - a computer to run Putty, the TFTP server and connect the FTDI adapter via usb. In my case it is a Windows 11 notebook.
- - a LAN connection between the computer running the TFTP server and the ip camera in order to upload the new firmware. Since the camera is already wire connected to the computer via the FTDI adapter, for me the easiest way is to connect also the computer directly to the ip camera with an ethernet cable, but you may prefer to connect the ip camera ethernet cable to a router. 
+ - a computer to run PuTTY, the TFTP server and connect the FTDI adapter via usb. In my case it is a Windows 11 notebook.
+ - a LAN connection between the computer running the TFTP server and the IP camera in order to upload the new firmware. Since the camera is already wire connected to the computer via the FTDI adapter, for me the easiest way is to connect also the computer directly to the IP camera with an Ethernet cable, but you may prefer to connect the IP camera Ethernet cable to a router. 
    
 ## WHAT YOU NEED - SOFTWARE
 - a TFTP software as for example [Tftpd64](https://pjo2.github.io/tftpd64/) (ensure firewall is not blocking the TFTP server)
@@ -34,10 +34,10 @@ The necessary hardware is:
 
 
 ## MY STORY FROM THE BEGINNING
-I was looking for a cheap ip camera to monitor the car parking in front of my building. I searched for an image sensor suitable for low light conditions in order to discreetely see distant objects (up to 80 meters) without need of illumination (no infrared or white light) during night.
+I was looking for a cheap IP camera to monitor the car parking in front of my building. I searched for an image sensor suitable for low light conditions in order to discreetly see distant objects (up to 80 meters) without need of illumination (no infrared or white light) during night.
 
 Required features:
-- a cheap ip camera
+- a cheap IP camera
 - no proprietary cloud service or proprietary app
 - rtsp stream
 - wifi connectivity
@@ -57,7 +57,7 @@ Hopefully the open source firmware OpenIPC was available for this board.
 ## FLASHING THE ORIGINAL FIRMWARE
 Installing the OpenIPC firmware has been a more difficult process than expected mainly because the original firmware was password protected. Long story short... I was able to remove the lock with the [Debrick](https://github.com/OpenIPC/debrickDebrick) utility.
 Installing wifi drivers and setup the wifi connection was even more challenging and this is the reason because I decided to share my experience in this guide.
-OpenIPC website instructions look straightforward, but they are incompleted. OpenIPC github repository together with telegram channel are the main resources, but also here topics are not presented in a logical order so you need some days/weeks (depending on your skills) to figure out how the system works and where to look. For example, the first time I was able to install the OpenIPC firmware and access the web interface, I immediatly search for a button to activate the ip camera wifi, but then I realise that it is not so easy... You have to rebuild the firmware to include wifi drivers!
+OpenIPC website instructions look straightforward, but they are incomplete. OpenIPC github repository together with telegram channel are the main resources, but also here topics are not presented in a logical order so you need some days/weeks (depending on your skills) to figure out how the system works and where to look. For example, the first time I was able to install the OpenIPC firmware and access the web interface, I immediately search for a button to activate the IP camera wifi, but then I realize that it is not so easy... You have to rebuild the firmware to include wifi drivers!
 
 ## How to restore the camera stock cinese firmware if you're in trouble
 ~~~
@@ -71,9 +71,9 @@ reset
 ~~~
 
 ## HOW TO CUSTOMIZE FIRMWARE TO ENABLE WIFI
-Apply the following modifications before to re-build the firmware to include wi-fi drivers:
+Apply the following modifications before re-building the firmware to include wi-fi drivers:
 
-- (first modification is SUPERSEDED since in August 2024 ih has been merged to the master repository of OpenIPC firmware, however the firmware still requires to be rebuild in order to include wifi drivers)
+- (first modification is SUPERSEDED since in August 2024 it has been merged to the master repository of OpenIPC firmware, however the firmware still requires to be rebuild in order to include wifi drivers)
   ~~modify the file [general/overlay/etc/wireless/usb](general/overlay/etc/wireless/usb) to include the required instruction to power on the wifi board based on the ATBM603x wifi chip (see images above). The following lines have been added:~~
   ~~# GK7205V300 XM IVG-G6S~~
 ~~if [ "$1" = "atbm603x-gk7205v300-xm-g6s" ]; then~~
@@ -104,7 +104,7 @@ iface wlan0 inet dhcp
 > [!NOTE]
 > **SSID** and **Wifipassword** are placeholder to be modified with your actual SSID and password.
 
-- modifies the ethernet ip fallback address in file [/general/overlay/etc/init.d/S40network](/general/overlay/etc/init.d/S40network) from 192.168.2.1 (which is outside my subnet ip range) to 192.168.1.200 which is inside my subnet range and not in conflict with other devices connected to my LAN. This addresso is used to get access to the ip camera via ethernet cable in case the wifi connection can not be established.
+- modifies the Ethernet ip fallback address in file [/general/overlay/etc/init.d/S40network](/general/overlay/etc/init.d/S40network) from 192.168.2.1 (which is outside my subnet ip range) to 192.168.1.200 which is inside my subnet range and not in conflict with other devices connected to my LAN. This address is used to get access to the IP camera via Ethernet cable in case the wifi connection can not be established.
 
 - assign a fixed value to the variable *dev* (i.e. dev=atbm603x-gk7205v300-xm-g6s) in file [/general/overlay/etc/init.d/S40network](/general/overlay/etc/init.d/S40network) Without this modification you should manually assign a value to the U-boot variable with command:
 ~~~
@@ -130,7 +130,7 @@ killall -1 majestic
 
 
 ## BUILD CUSTOMIZED FIRMARE
-Open Ubuntu terminal and, if not already available, intall "git" and "make":
+Open Ubuntu terminal and, if not already available, install "git" and "make":
 ~~~
 sudo apt update
 sudo apt install git
@@ -151,11 +151,11 @@ Wait until make process is finished. Check for any errors. Output firmware files
 
 ## How to install for the first time the customized firmware
 
-Connect UART and ethernet cable (only for the fist installation of the customized OpenIPC firmware) to the ip camera.
-Run Putty console and run the tftp server. Ensure the tftp server is pointing to the folder where firmware output files have been generated. Ensure that any firewall is blocking the tftp server.
+Connect UART and Ethernet cable (only for the first installation of the customized OpenIPC firmware) to the IP camera.
+Run PuTTY console and run the tftp server. Ensure the tftp server is pointing to the folder where firmware output files have been generated. Ensure that any firewall is blocking the tftp server.
 Switch on the camera and press CTRL+C to interrupt the boot process.
 Now you are in the bootloader console.
-Set the ip address of the ip camera and the ip address of the computer where tftp server is running:
+Set the ip address of the IP camera and the ip address of the computer where tftp server is running:
 ~~~
 setenv ipaddr 192.168.137.2
 setenv serverip 192.168.137.1
@@ -185,7 +185,7 @@ Default username and password are root/12345.
 Open camera's web interface on port 85 (http://<camera_ip>:85/). You will be asked to set up your own password.
 
 ## How to update the customized firmware (via wifi)
-Assuming the IP camera is already connected to your wifi network, you don't need UART and ethernet cable to update the firmware.
+Assuming the IP camera is already connected to your wifi network, you don't need UART and Ethernet cable to update the firmware.
 On Ubuntu, use "scp" command to copy the two files (rootfs and uImage) to your camera /tmp folder (/tmp folder is a temporary storage, as big as your camera free RAM):
 
 ~~~
@@ -199,7 +199,7 @@ soc=$(fw_printenv -n soc)
 sysupgrade --kernel=/tmp/uImage.${soc} --rootfs=/tmp/rootfs.squashfs.${soc} -z
 ~~~
 
-You can add -n key if you need to clean overlay after update (reset all settings to default). After the instalation is complete, the camera will reboot automatically. Connect again to the camera and run this command (same as -n in the previous command):
+You can add -n key if you need to clean overlay after update (reset all settings to default). After the installation is complete, the camera will reboot automatically. Connect again to the camera and run this command (same as -n in the previous command):
 ~~~
 firstboot
 ~~~
