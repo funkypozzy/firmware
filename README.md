@@ -71,24 +71,26 @@ reset
 ~~~
 
 ## HOW TO CUSTOMIZE FIRMWARE TO ENABLE WIFI
-This branch of the original OpenIPC github repository:
-- (SUPERSEDED: since August 2024, this modification has been merged to the master repository of OpenIPC, however the firmware still requires to rebuild in order to include wifi drivers) modifies the file [general/overlay/etc/wireless/usb](general/overlay/etc/wireless/usb) to include the required instruction to power on the wifi board based on the ATBM603x wifi chip (see images above). The following lines have been added:
-~~~ # GK7205V300 XM IVG-G6S
-if [ "$1" = "atbm603x-gk7205v300-xm-g6s" ]; then
-  devmem 0x100C0080 32 0x530
-  set_gpio 7 0
-  modprobe atbm603x_wifi_usb
-  exit 0
-fi
-~~~
-- modifies the file [/br-ext-chip-goke/configs/gk7205v300_ultimate_defconfig](/br-ext-chip-goke/configs/gk7205v300_ultimate_defconfig) to include drivers for generic ATBM603x wifi chip. 
+Apply the following modifications before to re-build the firmware to include wi-fi drivers:
+
+- (first modification is SUPERSEDED since in August 2024 ih has been merged to the master repository of OpenIPC firmware, however the firmware still requires to be rebuild in order to include wifi drivers)
+  ~~modify the file [general/overlay/etc/wireless/usb](general/overlay/etc/wireless/usb) to include the required instruction to power on the wifi board based on the ATBM603x wifi chip (see images above). The following lines have been added:~~
+  ~~# GK7205V300 XM IVG-G6S~~
+~~if [ "$1" = "atbm603x-gk7205v300-xm-g6s" ]; then~~
+	~~devmem 0x100C0080 32 0x530~~
+	~~set_gpio 7 0~~
+	~~modprobe atbm603x_wifi_usb~~
+	~~exit 0~~
+~~fi~~
+
+- modify the file [/br-ext-chip-goke/configs/gk7205v300_ultimate_defconfig](/br-ext-chip-goke/configs/gk7205v300_ultimate_defconfig) to include drivers for generic ATBM603x wifi chip. 
 ~~~ 
 BR2_PACKAGE_ATBM60XX=y
 BR2_PACKAGE_ATBM60XX_MODEL_603X=y
 BR2_PACKAGE_ATBM60XX_INTERFACE_USB=y
 ~~~
-After file modification, it is necessary to re-build the firmware since wifi drivers are not included by default in OpenIPC firmware.
-- modifies file [general/overlay/etc/network/interfaces.d/wlan0](general/overlay/etc/network/interfaces.d/wlan0) to include specific instruction to power on/off the wifi board:
+
+- modify file [general/overlay/etc/network/interfaces.d/wlan0](general/overlay/etc/network/interfaces.d/wlan0) to include specific instruction to power on/off the wifi board:
 
 ~~~
 iface wlan0 inet dhcp
@@ -124,6 +126,9 @@ Restart majestic streamer to apply settings:
 ~~~
 killall -1 majestic
 ~~~
+
+
+
 ## BUILD CUSTOMIZED FIRMARE
 Open Ubuntu terminal and, if not already available, intall "git" and "make":
 ~~~
