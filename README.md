@@ -104,7 +104,7 @@ iface wlan0 inet dhcp
 > [!NOTE]
 > **SSID** and **Wifipassword** are placeholder to be modified with your actual SSID and password.
 
-- modifies the Ethernet ip fallback address in file [/general/overlay/etc/init.d/S40network](/general/overlay/etc/init.d/S40network) from 192.168.2.1 (which is outside my subnet ip range) to 192.168.1.200 which is inside my subnet range and not in conflict with other devices connected to my LAN. This address is used to get access to the IP camera via Ethernet cable in case the wifi connection can not be established.
+- modifies the Ethernet ip fallback address in file [/general/overlay/etc/init.d/S40network](/general/overlay/etc/init.d/S40network) from 192.168.2.1 (which is outside my subnet IP range) to 192.168.1.200 which is inside my subnet range and not in conflict with other devices connected to my LAN. This address is used to get access to the IP camera via Ethernet cable in case the wifi connection cannot be established.
 
 - assign a fixed value to the variable *dev* (i.e. dev=atbm603x-gk7205v300-xm-g6s) in file [/general/overlay/etc/init.d/S40network](/general/overlay/etc/init.d/S40network) Without this modification you should manually assign a value to the U-boot variable with command:
 ~~~
@@ -182,7 +182,7 @@ reset
 Let the camera reboot and start linux.
 Congratulations! At this moment, you have a customized OpenIPC Firmware (Ultimate) installed with wifi enabled.
 Default username and password are root/12345.
-Open camera's web interface on port 85 (http://<camera_ip>:85/). You will be asked to set up your own password.
+Open the camera's web interface on port 85 (http://<camera_ip>:85/). You will be asked to set up your own password.
 
 ## How to update the customized firmware (via wifi)
 Assuming the IP camera is already connected to your wifi network, you don't need UART and Ethernet cable to update the firmware.
