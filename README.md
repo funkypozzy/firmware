@@ -1,10 +1,10 @@
 ## Customised OpenIPC firmware for IVG G6S (GK7205V300 + Sony IMX335) with the wifi/SD board IPC-38x38-WIFI-IF V1.02 - ATBM603x
 
-I forked the OpenIPC repository and then I created branch named "wifi" to do my experiments.
+I forked the OpenIPC firmware official repository and then I created branch named "wifi" to do my experiments.
 
 ![image](https://github.com/user-attachments/assets/226fbad1-3bf7-4fd5-a5b6-ad63b9eab8b4)
 
-The idea is to keep the code as much as possible aligned with the OpenIPC master branch and customise the firmware just enough to automatically connet the camera to my home wifi network, without the need of an ethernet cable, UART connection or manual input. Any other changes can be made later using SSH or cli...
+The idea was to customise the firmware just enough to automatically connet the camera to my home wifi network, without the need of a wired connection like an ethernet cable or UART connection. Once the camera is connected to wifi, any other change can be made over the air using SSH or cli... This was especially useful when I experimented with different configurations.
 
 The wifi/SD module is the IPC-38x38-WIFI-IF V1.02 - ATBM603x (see following images for reference) for my board IVG G6S (GK7205V300 + Sony IMX335).
 
@@ -13,17 +13,19 @@ The wifi/SD module is the IPC-38x38-WIFI-IF V1.02 - ATBM603x (see following imag
 
 
 ## WHAT YOU NEED - HARDWARE
+Wired connections (ethernet + UART) are only necessary to load the modified firmware the first time.
+The necessary hardware is:
  - the ip camera with the additional wifi/SD board (buy on aliexpress), a 12V power supply and an ethernet cable.
  - an FTDI adapter for 3V3. My FTDI adapter has a mini-USB connection (not micro-USB!) so ensure that you also have the proper USB cable.
  - a clever hard-wired connection to the UART TX/RX pins and GND of the ip camera (e.g. see the following image):
 ![20240726_124051](https://github.com/user-attachments/assets/ac0ab764-4299-4e69-966c-97fbb0092130)
 ![Senza titolo](https://github.com/user-attachments/assets/35c97371-6608-45fc-ba23-1b52e78daeb6)
- - a computer (in my case an Hyper-V virtual machine running under Windows 11) with UBUNTU 22.04 to build the firmware.  FYI, I was not able to build the firmware with Raspbian running on rpi4 or rpi5.
- - a computer to run Putty, the TFTP server and connect the FTDI adapter via usb. In my case it is a Windows 11 PC.
- - a LAN connection between the computer running the TFTP server and the ip camera in order to upload the new firmware. Since the camera is already wire connected to the computer via the FTDI adapter, for me the easiest way is to connect also the computer directly to the ip camera with an ethernet cable, but you may decide to communicate between your computer and and the ip camera via a router. The ethernet cable is necessary since wifi is not yet activated before uploading the customized firmware.
+ - a computer with UBUNTU 22.04 (or an Hyper-V virtual machine running UBUNTU 22.04) to build the firmware.  FYI, I was not able to build the firmware with Raspbian running on rpi4 or rpi5.
+ - a computer to run Putty, the TFTP server and connect the FTDI adapter via usb. In my case it is a Windows 11 notebook.
+ - a LAN connection between the computer running the TFTP server and the ip camera in order to upload the new firmware. Since the camera is already wire connected to the computer via the FTDI adapter, for me the easiest way is to connect also the computer directly to the ip camera with an ethernet cable, but you may prefer to connect the ip camera ethernet cable to a router. 
    
 ## WHAT YOU NEED - SOFTWARE
-- a TFTP software as for example [Tftpd64](https://pjo2.github.io/tftpd64/) (ensure firewall is not blocking the server)
+- a TFTP software as for example [Tftpd64](https://pjo2.github.io/tftpd64/) (ensure firewall is not blocking the TFTP server)
 
   ![image](https://github.com/user-attachments/assets/f0898e11-57f6-47f5-b634-25aad02b4c9f)
 - UBUNTU 22.04 to build the firmware (I was not able to build the firmware with a Raspbian running on rpi4 or rpi5) with 20GB storage.
@@ -55,9 +57,9 @@ Hopefully the open source firmware OpenIPC was available for this board.
 ## FLASHING THE ORIGINAL FIRMWARE
 Installing the OpenIPC firmware has been a more difficult process than expected mainly because the original firmware was password protected. Long story short... I was able to remove the lock with the [Debrick](https://github.com/OpenIPC/debrickDebrick) utility.
 Installing wifi drivers and setup the wifi connection was even more challenging and this is the reason because I decided to share my experience in this guide.
-OpenIPC website instructions look straightforward, but they are incompleted. OpenIPC github repository together with telegram channel are the main resources, but also here topics are not presented in a logical order so you need some days/weeks (depending on your skills) to figure out how the system works and where to look. For example, the first time I was able to install the OpenIPC firmware and access the web ui, I immediatly search for a button to activate the wifi, but then I realise that it requires to rebuild the firmware to include wifi drivers.
+OpenIPC website instructions look straightforward, but they are incompleted. OpenIPC github repository together with telegram channel are the main resources, but also here topics are not presented in a logical order so you need some days/weeks (depending on your skills) to figure out how the system works and where to look. For example, the first time I was able to install the OpenIPC firmware and access the web interface, I immediatly search for a button to activate the ip camera wifi, but then I realise that it is not so easy... You have to rebuild the firmware to include wifi drivers!
 
-## How to restore the camera stock firmware
+## How to restore the camera stock cinese firmware if you're in trouble
 ~~~
 # Enter commands line by line! Do not copy and paste multiple lines at once!
 setenv ipaddr 192.168.137.2; setenv serverip 192.168.137.1
@@ -69,7 +71,6 @@ reset
 ~~~
 
 ## HOW TO CUSTOMIZE FIRMWARE TO ENABLE WIFI
-
 This branch of the original OpenIPC github repository:
 - (SUPERSEDED: since August 2024, this modification has been merged to the master repository of OpenIPC, however the firmware still requires to rebuild in order to include wifi drivers) modifies the file [general/overlay/etc/wireless/usb](general/overlay/etc/wireless/usb) to include the required instruction to power on the wifi board based on the ATBM603x wifi chip (see images above). The following lines have been added:
 ~~~ # GK7205V300 XM IVG-G6S
